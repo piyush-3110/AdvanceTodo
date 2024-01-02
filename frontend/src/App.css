@@ -1,0 +1,62 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Ysabeau+Infant:wght@100;500&display=swap');
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+  font-family: 'Rubik', sans-serif;
+  font-family: 'Ysabeau Infant', sans-serif;
+}
+.child1{
+  height: 100vh;
+background-color: aqua;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width:65%;
+
+}
+.child2{
+  height: 100vh;
+  background-color: rgb(47, 179, 255);
+  display: flex;
+  flex-direction: column;
+justify-content: center;
+
+  align-items: center;
+  width:35%;
+}
+.parentclass{
+  display: flex;
+}
+button{
+  background-color: rgb(47, 179, 255);
+  padding: 0.7rem 1.5rem;
+  margin:0.7rem;
+  border-radius: 5px;
+
+}
+button:hover{
+  cursor:pointer;
+  background-color: blueviolet;
+}
+
+.child1 div input{
+  padding: 8px 1rem;
+  margin:3px;
+  width:100%;
+  border-radius: 10px;
+  border:none;
+
+}
+.child1 p{
+  margin: 4px;
+}
+input:hover{
+  background-color: aquamarine;
+  
+}
