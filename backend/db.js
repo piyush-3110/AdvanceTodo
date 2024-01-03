@@ -3,10 +3,7 @@ const { MONGODB_URI } = process.env;
 
 exports.connect = () => {
   mongoose
-    .connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+    .connect(MONGODB_URI, {})
     .then(() => {
       console.log("DB CONNECTED");
     })
