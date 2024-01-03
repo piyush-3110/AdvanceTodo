@@ -8,11 +8,8 @@ const validate = require("./validatesingup");
 const signupSchema = require("./userValidation");
 const UserModel = require("./model/userModel");
 const bcrypt = require("bcryptjs");
-app.post("/signin", (req, res) => {
-  res.send({
-    msg: "success",
-  });
-});
+const userModel = require("./model/userModel");
+const tokenAuth = require("./tokenAuth");
 app.post("/signup", validate(signupSchema), async (req, res) => {
   const userModel = new UserModel(req.body);
   const { email } = req.body;
@@ -32,6 +29,49 @@ app.post("/signup", validate(signupSchema), async (req, res) => {
     const message = error.errors[0].message;
     res.status(401).send({
       msg: message,
+    });
+  }
+});
+app.post("/signin", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(401).send({ msg: "Email doesnot exist" });
+    }
+    const passwordnew = await bcrypt.compare(req.body.password, user.password);
+    if (!passwordnew) {
+      return res.status(401).send({ msg: "Password is incorrect" });
+    }
+    const tokenObject = {
+      fullname: user.fullname,
+      _id: user._id,
+      email: user.email,
+    };
+    const jwtToken = jwt.sign(tokenObject, process.env.secret, {
+      expiresIn: "2h",
+    });
+    return res.status(201).json({
+      jwtToken,
+      tokenObject,
+    });
+  } catch (error) {
+    res.status(401).json({
+      msg: "Something wrong in logging in",
+    });
+  }
+});
+app.get("/users", tokenAuth, async (req, res) => {
+  try {
+    const users = await userModel.find({}, { password: 0 });
+
+    res.status(201).json({
+      data: users,
+      message: "success",
+    });
+  } catch (error) {
+    res.status(400).json({
+      data: error,
     });
   }
 });
