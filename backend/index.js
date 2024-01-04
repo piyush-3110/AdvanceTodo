@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
+
 require("dotenv").config();
 require("./db").connect();
 app.use(express.json());
+app.use(cors());
 const validate = require("./validatesingup");
 const signupSchema = require("./userValidation");
 const UserModel = require("./model/userModel");
@@ -75,4 +78,6 @@ app.get("/users", tokenAuth, async (req, res) => {
     });
   }
 });
-app.listen(3000);
+app.listen(3000, () => {
+  console.log("App running on port 3000");
+});
