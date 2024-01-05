@@ -60,3 +60,29 @@ input:hover{
   background-color: aquamarine;
   
 }
+.logout{
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+
+}
+.signupparent{
+  height: 100vh;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+background-color: aqua;
+}
+.signupparent1{
+  background-color: rgb(117, 117, 73);
+  height:27rem;
+  width: 25rem;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  gap:1rem;
+}

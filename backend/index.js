@@ -66,8 +66,10 @@ app.post("/signin", async (req, res) => {
 });
 app.get("/users", tokenAuth, async (req, res) => {
   try {
-    const users = await userModel.find({}, { password: 0 });
-
+    const email = req.query.email;
+    console.log(email);
+    const users = await userModel.findOne({ email }, { password: 0 });
+    console.log(users);
     res.status(201).json({
       data: users,
       message: "success",
