@@ -94,19 +94,63 @@ width: 50vw;
 display: flex;
 justify-content: center;
 background-color: rgb(41, 165, 41);
-z-index: 1;
+
 }
 .pending{
   
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-color: rgb(201, 58, 58) ;
 width: 50vw;
 
+  
 }
 .flexContainer{
   display: flex;
   background-color: rgb(57, 107, 90);
-  height: calc(89vh);
+  min-height: 78vh;
+  height: 100%;
   justify-content: space-between;
+
+
+}
+.todoInput{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ background-color: bisque;
+}
+.todoInput input{
+  height: 7vh;
+  margin: 1vh;
+  width: 80%;
+  border:2px solid black;
+  text-align: center;
+  font-weight: bold;
+}
+.parentLabel{
+  display: flex;
+  justify-content: space-evenly;
+  width:100%;
+  align-items: center;
+}
+.tasks{
+  width: 80%;
+  max-width: 80%;
+  margin:1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left:2px;
+  background-color: rgb(174, 174, 55);
+
+}
+.tasks h2{
+
+overflow-x: auto;
+word-wrap: break-word;
+}
+.buttonContainer{
+  display: flex;
 }
