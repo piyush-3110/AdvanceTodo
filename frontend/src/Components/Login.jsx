@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import Home from "./Home";
 import Signup from "./Signup";
@@ -22,11 +23,16 @@ const Login = () => {
         })
         .then((response) => {
           const token = response.data.jwtToken;
+
+          toast.success("Successfully logged in");
           Cookies.set("token", token, { expires: 7, secure: true });
+
           setlogin(true);
         });
     } catch (error) {
       console.log(error);
+      console.log(error.response.data);
+      toast.error(error.response.data);
     }
   };
   return (
@@ -72,6 +78,7 @@ const Login = () => {
           )}
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

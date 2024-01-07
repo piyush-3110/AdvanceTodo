@@ -2,10 +2,11 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import Login from "./Login";
 const Home = ({ email, login }) => {
   const [name, setName] = useState();
   const token = Cookies.get("token");
-
+  const [logout, setLogout] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,12 +31,25 @@ const Home = ({ email, login }) => {
 
     fetchData();
   }, [token, email]);
+  const handleLogout = (e) => {
+    e.preventDefault();
+    try {
+      setLogout(true);
+      Cookies.remove(token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
-      <div className="logout">
-        <h3>{name}</h3>
-        <button>LogOut</button>
-      </div>
+      {logout ? (
+        <Login />
+      ) : (
+        <div className="logout">
+          <h3>{name}</h3>
+          <button onClick={handleLogout}>LogOut</button>
+        </div>
+      )}
     </div>
   );
 };

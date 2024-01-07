@@ -19,7 +19,7 @@ app.post("/signup", validate(signupSchema), async (req, res) => {
   userModel.password = await bcrypt.hash(req.body.password, 10);
   const userExist = await UserModel.findOne({ email });
   if (userExist) {
-    return res.status(401).send({ msg: "User already exist " });
+    return res.status(401).send("User already exist ");
   }
   try {
     const response = await userModel.save();
@@ -30,9 +30,7 @@ app.post("/signup", validate(signupSchema), async (req, res) => {
     });
   } catch (error) {
     const message = error.errors[0].message;
-    res.status(401).send({
-      msg: message,
-    });
+    res.status(401).send(message);
   }
 });
 app.post("/signin", async (req, res) => {
@@ -40,11 +38,11 @@ app.post("/signin", async (req, res) => {
     const { email } = req.body;
     const user = await UserModel.findOne({ email });
     if (!user) {
-      return res.status(401).send({ msg: "Email doesnot exist" });
+      return res.status(401).send("Email doesnot exist");
     }
     const passwordnew = await bcrypt.compare(req.body.password, user.password);
     if (!passwordnew) {
-      return res.status(401).send({ msg: "Password is incorrect" });
+      return res.status(401).send("Password is incorrect");
     }
     const tokenObject = {
       fullname: user.fullname,
@@ -59,9 +57,7 @@ app.post("/signin", async (req, res) => {
       tokenObject,
     });
   } catch (error) {
-    res.status(401).json({
-      msg: "Something wrong in logging in",
-    });
+    res.status(401).send("Something wrong in logging in");
   }
 });
 app.get("/users", tokenAuth, async (req, res) => {
@@ -72,7 +68,7 @@ app.get("/users", tokenAuth, async (req, res) => {
     console.log(users);
     res.status(201).json({
       data: users,
-      message: "success",
+      message: "Success",
     });
   } catch (error) {
     res.status(400).json({
