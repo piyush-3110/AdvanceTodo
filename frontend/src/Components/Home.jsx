@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import Login from "./Login";
+import Todo from "./Todo";
 const Home = ({ email, login }) => {
   const [name, setName] = useState();
   const token = Cookies.get("token");
@@ -45,9 +46,12 @@ const Home = ({ email, login }) => {
       {logout ? (
         <Login />
       ) : (
-        <div className="logout">
-          <h3>{name}</h3>
-          <button onClick={handleLogout}>LogOut</button>
+        <div>
+          <div className="logout">
+            <h3>{name}</h3>
+            <button onClick={handleLogout}>LogOut</button>
+          </div>
+          <Todo />
         </div>
       )}
     </div>

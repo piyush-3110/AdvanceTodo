@@ -86,3 +86,27 @@ background-color: aqua;
   border-radius: 1rem;
   gap:1rem;
 }
+.logout{
+  background-color: bisque;
+}
+.success{
+width: 50vw;
+display: flex;
+justify-content: center;
+background-color: rgb(41, 165, 41);
+z-index: 1;
+}
+.pending{
+  
+  display: flex;
+  justify-content: center;
+  background-color: rgb(201, 58, 58) ;
+width: 50vw;
+
+}
+.flexContainer{
+  display: flex;
+  background-color: rgb(57, 107, 90);
+  height: calc(89vh);
+  justify-content: space-between;
+}
